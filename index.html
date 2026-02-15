@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour of Dom</title>
 </head>
-<body>
-    
+
+<body id="bodyId">
+    <h1>Secret Info</h1>
+    <input id="input-box" type="text" placeholder="write delete">
+    <button id="btn-delete" disabled>Delete</button>
+
+    <script>
+        const inputBox = document.getElementById('input-box');
+        document.getElementById('bodyId').addEventListener('click', function () {
+            inputBox.style.backgroundColor = 'white';
+            document.getElementById('input-box').addEventListener('blur', function () {
+                inputBox.style.backgroundColor = 'black';
+            })
+        })
+
+
+        document.getElementById('input-box').addEventListener('keyup', function (event) {
+            const text = event.target.value;
+            if (text === 'delete') {
+                document.getElementById('btn-delete').removeAttribute('disabled');
+                document.getElementById('btn-delete').addEventListener('click', function () {
+                    document.getElementById('input-box').value = '';
+                })
+            }
+            else {
+                document.getElementById('btn-delete').setAttribute('disabled', true);
+            }
+        })
+    </script>
 </body>
+
 </html>
