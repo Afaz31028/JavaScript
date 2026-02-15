@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation</title>
+</head>
+<body>
+    <div id="product-list">
+        <h4>Product purchaced list:</h4>
+        <ol id="list">
+            <li>Mobile</li>
+            <li>Laptop</li>
+            <li>Frieze</li>
+            <li>Air Condition</li>
+        </ol>
+    </div>
+    <input type="text" name="" id="input-box" placeholder="Product Name">
+    <button id="btn-add">Add to Cart</button>
+    <script>
+        document.getElementById('btn-add').addEventListener('click',function(e){
+            const productName=document.getElementById('input-box');
+            
+            const newElement=document.createElement('li');
+            newElement.innerText=productName.value;
+
+            const container= document.getElementById('list');
+            container.appendChild(newElement);
+            productName.value="";
+        })
+
+        document.getElementById('list').addEventListener('click',function(event){
+            // console.log(e.target);
+            event.target.remove();
+
+        })
+    </script>
+</body>
+</html>
